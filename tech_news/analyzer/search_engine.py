@@ -14,11 +14,17 @@ def search_by_title(title):
 def search_by_date(date):
     try:
         date_time = datetime.strptime(date, "%Y-%m-%d")
+        new_date = date_time.strftime("%d/%m/%Y")
+        date_filtered = {"timestamp": new_date}
+        news = search_news(date_filtered)
+
+        news_filtered = []
+        for new in news:
+            news_filtered.append((new["title"], new["url"]))
     except ValueError:
         raise ValueError("Data inválida")
-    format_date = "{:%d/%m/%Y}".format(date_time)
-    news = search_news({"timestamp": format_date})
-    return list(news)
+
+    return news_filtered
 
 
 # Requisito 9
