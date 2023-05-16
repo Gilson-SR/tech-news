@@ -13,10 +13,10 @@ def search_by_title(title):
 # Requisito 8
 def search_by_date(date):
     try:
-        date = datetime.strptime(date, "%Y-%m-%d")
+        date_time = datetime.strptime(date, "%Y-%m-%d")
     except ValueError:
         raise ValueError("Data inválida")
-    format_date = "{:%d/%m/%Y}".format(date)
+    format_date = "{:%d/%m/%Y}".format(date_time)
     news = search_news({"timestamp": format_date})
     return list(news)
 
