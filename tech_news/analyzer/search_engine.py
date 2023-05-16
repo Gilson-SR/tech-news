@@ -2,6 +2,10 @@ from tech_news.database import search_news
 from datetime import datetime
 
 
+def list(news):
+    return [(new["title"], new["url"]) for new in news]
+
+
 # Requisito 7
 def search_by_title(title):
     news = search_news({"title": {"$regex": title, "$options": "i"}})
